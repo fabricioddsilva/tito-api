@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if msg: %}
+    <h3><strong>{{msg}}</strong></h3>
+    {% endif %}
+    <form action="" method="post">
+        <label for="nome">Usuario:</label>
+        <input type="text" id="nome" name="usuario">
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha">
+
+        <label for="matricula">Matricula:</label>
+        <input type="text" id="matricula" name="matricula">
+
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

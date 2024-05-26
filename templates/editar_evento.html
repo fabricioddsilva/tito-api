@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="hidden" name="_method" value="patch">
+        {% for dado in evento %}
+
+        <label for="nome">Nome do Evento:</label>
+        <input type="text" name="nome" id="nome" value="{{dado.nome}}">
+        <hr>
+
+        <label for="data">Data:</label>
+        <input type="date" name="data" id="data" value="{{dado.data_evento}}">
+        <hr>
+
+        <label for="hora_ini">Hora de Inicio:</label>
+        <input type="time" id="hora_ini" name="hora_inicio" value="{{dado.hora_inicio}}">
+        <hr>
+
+        <label for="hora_fim">Hora de Termino</label>
+        <input type="time" id="hora_fim" name="hora_fim" value="{{dado.hora_fim}}">
+        <hr>
+
+        <label for="desc">Descrição</label>
+        <input type="text" id="desc" name="descricao" value="{{dado.descricao}}">
+        <hr>
+
+        <label for="qtd-visi">Quantidade de Visitantes:</label>
+        <input type="number" name="visitantes" id="qtd-visi" value="{{dado.visitantes}}">
+
+        <input type="submit" value="Submit">
+        {% endfor %}
+    </form>
+</body>
+</html>

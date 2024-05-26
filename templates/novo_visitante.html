@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <h4>{{msg}}</h4>
+        {% endif %}
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" required>
+        <hr>
+
+        <label for="cpf">CPF:</label>
+        <input id="cpf" name="cpf"
+            onkeyup=" mascara(this); if (validaCPF(this.value) == true) { document.getElementById('submit').removeAttribute('disabled')} else {document.getElementById('submit').setAttribute('disabled','')}">
+        <hr>
+
+        <input type="submit" value="Submit" id="Se Inscrever" disabled>
+    </form>
+    <script>
+        function mascara(i) {
+
+            var v = i.value;
+
+            if (isNaN(v[v.length - 1])) { // impede entrar outro caractere que não seja número
+                i.value = v.substring(0, v.length - 1);
+                return;
+            }
+
+            i.setAttribute("maxlength", "14");
+            if (v.length == 3 || v.length == 7) i.value += ".";
+            if (v.length == 11) i.value += "-";
+
+        }
+
+        function validaCPF(cpf) {
+            var Soma = 0
+            var Resto
+
+            var strCPF = String(cpf).replace(/[^\d]/g, '')
+
+            if (strCPF.length !== 11)
+                return false
+
+            if ([
+                '00000000000',
+                '11111111111',
+                '22222222222',
+                '33333333333',
+                '44444444444',
+                '55555555555',
+                '66666666666',
+                '77777777777',
+                '88888888888',
+                '99999999999',
+            ].indexOf(strCPF) !== -1)
+                return false
+
+            for (i = 1; i <= 9; i++)
+                Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+
+            Resto = (Soma * 10) % 11
+
+            if ((Resto == 10) || (Resto == 11))
+                Resto = 0
+
+            if (Resto != parseInt(strCPF.substring(9, 10)))
+                return false
+
+            Soma = 0
+
+            for (i = 1; i <= 10; i++)
+                Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i)
+
+            Resto = (Soma * 10) % 11
+
+            if ((Resto == 10) || (Resto == 11))
+                Resto = 0
+
+            if (Resto != parseInt(strCPF.substring(10, 11)))
+                return false
+
+            return true
+        }
+    </script>
+</body>
+
+</html>

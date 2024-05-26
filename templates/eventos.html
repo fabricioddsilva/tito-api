@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Eventos</title>
+</head>
+<body>
+    {% if username != none %}
+    <a href="/evento/novo"><input type="button" value="Novo Evento"></a>
+    <a href="/deslogar"><input type="button" value="Deslogar"></a>
+    {% endif %}
+        <table>
+            <tr>
+                <th>Nome do Evento</th>
+                <th>Data</th> 
+                <th>Hora de Inicio</th> 
+                <th>Hora de Termino</th>
+                <th>Descrição</th>
+                <th>Vagas</th>
+            </tr>
+    {% for evento in eventos %}
+            <tr>
+                <td>{{evento['nome']}}</td>
+                <td>{{evento['data']}}</td>
+                <td>{{evento['hora_inicio']}}</td>
+                <td>{{evento['hora_fim']}}</td>
+                <td>{{evento['descricao']}}</td>
+                <td>{{evento['vagas']}}</td>
+                <td><a href="{{'/visitante/%s'%evento.id|urlencode}}"><button>Se Inscrever</button></a></td>
+                {% if username != None %}
+                <td><a href="{{'/editar/%s'%evento.id|urlencode}}"><button>Editar</button></a></td>
+                <td><a href="{{'/deletar/%s'%evento.id|urlencode}}"><button>Deletar</button></a></td>
+                {% endif %}
+            </tr>
+    {% endfor %}
+        </table>
+
+    
+</body>
+</html>
